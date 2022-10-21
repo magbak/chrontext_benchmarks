@@ -1,0 +1,56 @@
+PREFIX xsd:<http://www.w3.org/2001/XMLSchema#>
+PREFIX ct:<https://github.com/magbak/chrontext#>
+PREFIX wp:<https://github.com/magbak/chrontext/windpower_example#>
+PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rds:<https://github.com/magbak/chrontext/rds_power#>
+PREFIX bm:<https://github.com/magbak/chrontext_benchmark#>
+SELECT ?site_label ?wtur_label ?year ?month ?day ?hour ?minute_10 (AVG(?val_prod) as ?val_prod_avg) (AVG(?val_dir) as ?val_dir_avg) (AVG(?val_speed) as ?val_speed_avg) WHERE {
+    ?site a rds:Site .
+    ?site rdfs:label ?site_label .
+    ?site rds:hasFunctionalAspect ?wtur_asp .
+    ?wtur_asp rdfs:label ?wtur_label .
+    ?wtur rds:hasFunctionalAspectNode ?wtur_asp .
+    ?wtur a rds:A .
+    ?wtur rds:hasFunctionalAspect ?gensys_asp .
+    ?gensys rds:hasFunctionalAspectNode ?gensys_asp .
+    ?gensys a rds:RA .
+    ?gensys rds:hasFunctionalAspect ?generator_asp .
+    ?generator rds:hasFunctionalAspectNode ?generator_asp .
+    ?generator a rds:GAA .
+    ?wtur rds:hasFunctionalAspect ?weather_asp .
+    ?weather rds:hasFunctionalAspectNode ?weather_asp .
+    ?weather a rds:LE .
+    ?weather ct:hasTimeseries ?ts_speed .
+    ?ts_speed ct:hasDataPoint ?dp_speed .
+    ?dp_speed ct:hasValue ?val_speed .
+    ?dp_speed ct:hasTimestamp ?t .
+    ?ts_speed rdfs:label "Windspeed" .
+    ?weather ct:hasTimeseries ?ts_dir .
+    ?ts_dir ct:hasDataPoint ?dp_dir .
+    ?dp_dir ct:hasValue ?val_dir .
+    ?dp_dir ct:hasTimestamp ?t .
+    ?ts_dir rdfs:label "WindDirection" .
+    ?generator ct:hasTimeseries ?ts_prod .
+    ?ts_prod rdfs:label "Production" .
+    ?ts_prod ct:hasDataPoint ?dp_prod .
+    ?dp_prod ct:hasValue ?val_prod .
+    ?dp_prod ct:hasTimestamp ?t .
+    ?dp bm:hasYear ?year .
+    ?dp bm:hasMonth ?month .
+    ?dp bm:hasDay ?day .
+    BIND(10 * FLOOR(minutes(?t) / 10.0) as ?minute_10)
+    BIND(hours(?t) AS ?hour)
+    FILTER(?site_label = "Wind Mountain" && ?wtur_label in ("A1", "A2", "A3", "A4", "A5", "A6", "A7", "A8", "A9", "A10") && (
+        (?year = 2022 && ?month = 8 && ?day = 30 && ?t >= "2022-08-30T08:46:53"^^xsd:dateTime) ||
+        (?year > 2022) ||
+        (?year = 2022 && ?month > 8) ||
+        (?year = 2022 && ?month = 8 && ?day > 30))
+        && (
+        (?year = 2022 && ?month = 8 && ?day = 30 && ?t <= "2022-08-30T21:46:53"^^xsd:dateTime) ||
+        (?year < 2022) ||
+        (?year = 2022 && ?month < 8) ||
+        (?year = 2022 && ?month = 8 && ?day < 30))) .
+}
+GROUP BY ?site_label ?wtur_label ?year ?month ?day ?hour ?minute_10
+

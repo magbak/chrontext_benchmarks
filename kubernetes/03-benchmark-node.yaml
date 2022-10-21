@@ -1,0 +1,44 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: benchmark
+  name: benchmark
+  namespace: otit
+spec:
+  clusterIP: None
+  selector:
+    app: benchmark
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: benchmark
+  namespace: otit
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: benchmark
+  serviceName: benchmark
+  template:
+    metadata:
+      labels:
+        app: benchmark
+    spec:
+      containers:
+        - image: 865603927962.dkr.ecr.eu-west-2.amazonaws.com/benchmark:latest
+          imagePullPolicy: Always
+          name: benchmark
+      affinity:
+        podAntiAffinity: #https://medium.com/@johnjjung/building-a-kubernetes-daemonstatefulset-30ad0592d8cb
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: "app"
+                    operator: In
+                    values:
+                      - postgresql
+                      - ontop
+                      - dremio
+              topologyKey: "kubernetes.io/hostname"
