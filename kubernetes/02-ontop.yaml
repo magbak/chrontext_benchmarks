@@ -38,7 +38,7 @@ spec:
             value: com.dremio.jdbc.Driver
           - name: ONTOP_DB_URL
             value: jdbc:dremio:direct=dremio-client.otit.svc.cluster.local:31010
-          image: 865603927962.dkr.ecr.eu-west-2.amazonaws.com/ontop:latest
+          image: ID_HERE.dkr.ecr.eu-west-2.amazonaws.com/ontop:latest
           imagePullPolicy: Always
           name: ontop
           ports:

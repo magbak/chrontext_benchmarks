@@ -27,7 +27,7 @@ spec:
         app: benchmark
     spec:
       containers:
-        - image: 865603927962.dkr.ecr.eu-west-2.amazonaws.com/benchmark:latest
+        - image: ID_HERE.dkr.ecr.eu-west-2.amazonaws.com/benchmark:latest
           imagePullPolicy: Always
           name: benchmark
       affinity:
