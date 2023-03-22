@@ -14,7 +14,7 @@ def create_table_name(iri: str):
     for c in iri:
         if c.isalpha():
             name += c
-    name = name.lower().replace("httpsgithubcommagbakotitswt", "").replace("httpwwwworgrdfschema", "").replace("httpwwwworgrdfsyntaxns", "")
+    name = name.lower().replace("httpsgithubcommagbakchrontext", "").replace("httpwwwworgrdfschema", "").replace("httpwwwworgrdfsyntaxns", "")
     return name
 
 
@@ -61,11 +61,11 @@ mapping += "[MappingDeclaration] @collection [["
 mapping += """	
 mappingId	timeseriesdouble
 target	    ex:{datapoint_id} <https://github.com/magbak/chrontext_benchmark#hasYear> {dir0}^^xsd:int . ex:{datapoint_id} <https://github.com/magbak/chrontext_benchmark#hasMonth> {dir1}^^xsd:int .ex:{datapoint_id} <https://github.com/magbak/chrontext_benchmark#hasDay> {dir2}^^xsd:int . ex:{dir3} <https://github.com/magbak/chrontext#hasDataPoint> ex:{datapoint_id}. ex:{datapoint_id} <https://github.com/magbak/chrontext#hasValue> {value}^^xsd:double;  <https://github.com/magbak/chrontext#hasTimestamp> {timestamp}^^xsd:dateTime . 
-source		SELECT "dir0", "dir1", "dir2", "dir3", "datapoint_id", "timestamp", "value" from "s3"."otit-benchmark"."timeseries_double"
+source		SELECT "dir0", "dir1", "dir2", "dir3", "datapoint_id", "timestamp", "value" from "s3"."chrontext-benchmark"."timeseries_double"
 
 mappingId	timeseriesboolean
 target	    ex:{datapoint_id} <https://github.com/magbak/chrontext_benchmark#hasYear> {dir0}^^xsd:int . ex:{datapoint_id} <https://github.com/magbak/chrontext_benchmark#hasMonth> {dir1}^^xsd:int .ex:{datapoint_id} <https://github.com/magbak/chrontext_benchmark#hasDay> {dir2}^^xsd:int . ex:{dir3} <https://github.com/magbak/chrontext#hasDataPoint> ex:{datapoint_id}. ex:{datapoint_id} <https://github.com/magbak/chrontext#hasValue> {value}^^xsd:boolean;  <https://github.com/magbak/chrontext#hasTimestamp> {timestamp}^^xsd:dateTime .
-source		SELECT "dir0", "dir1", "dir2", "dir3", "datapoint_id", "timestamp", "value" from "s3"."otit-benchmark"."timeseries_boolean"
+source		SELECT "dir0", "dir1", "dir2", "dir3", "datapoint_id", "timestamp", "value" from "s3"."chrontext-benchmark"."timeseries_boolean"
 
 """
 

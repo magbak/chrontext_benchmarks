@@ -33,12 +33,12 @@ spec:
           - name: ONTOP_DB_USER
             value: mba
           - name: ONTOP_DB_PASSWORD
-            value: XzawajQ4a7hJQGx
+            value: Qi3CQzuqK5DTJcS
           - name: ONTOP_DB_DRIVER
             value: com.dremio.jdbc.Driver
           - name: ONTOP_DB_URL
-            value: jdbc:dremio:direct=dremio-client.chrontext.svc.cluster.local:31010
-          image: ID_HERE.dkr.ecr.eu-west-2.amazonaws.com/ontop:latest
+            value: jdbc:dremio:direct=dremio-client.default.svc.cluster.local:31010
+          image: iiiiiiiiiii.dkr.ecr.eu-west-2.amazonaws.com/ontop:latest
           imagePullPolicy: Always
           name: ontop
           ports:

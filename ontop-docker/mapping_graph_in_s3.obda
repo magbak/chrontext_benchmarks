@@ -1,0 +1,50 @@
+[PrefixDeclaration]
+ex:		https://github.com/magbak/chrontext/windpower_example#
+rds:	https://github.com/magbak/chrontext/rds_power#
+
+[MappingDeclaration] @collection [[
+mappingId	timeseriesdouble
+target	    ex:{datapoint_id} <https://github.com/magbak/chrontext_benchmark#hasYear> {dir0}^^xsd:int . ex:{datapoint_id} <https://github.com/magbak/chrontext_benchmark#hasMonth> {dir1}^^xsd:int .ex:{datapoint_id} <https://github.com/magbak/chrontext_benchmark#hasDay> {dir2}^^xsd:int . ex:{dir3} <https://github.com/magbak/chrontext#hasDataPoint> ex:{datapoint_id}. ex:{datapoint_id} <https://github.com/magbak/chrontext#hasValue> {value}^^xsd:double;  <https://github.com/magbak/chrontext#hasTimestamp> {timestamp}^^xsd:dateTime .
+source		SELECT "dir0", "dir1", "dir2", "dir3", "datapoint_id", "timestamp", "value" from "s3"."otit-benchmark"."timeseries_double"
+
+mappingId	timeseriesboolean
+target	    ex:{datapoint_id} <https://github.com/magbak/chrontext_benchmark#hasYear> {dir0}^^xsd:int . ex:{datapoint_id} <https://github.com/magbak/chrontext_benchmark#hasMonth> {dir1}^^xsd:int .ex:{datapoint_id} <https://github.com/magbak/chrontext_benchmark#hasDay> {dir2}^^xsd:int . ex:{dir3} <https://github.com/magbak/chrontext#hasDataPoint> ex:{datapoint_id}. ex:{datapoint_id} <https://github.com/magbak/chrontext#hasValue> {value}^^xsd:boolean;  <https://github.com/magbak/chrontext#hasTimestamp> {timestamp}^^xsd:dateTime .
+source		SELECT "dir0", "dir1", "dir2", "dir3", "datapoint_id", "timestamp", "value" from "s3"."otit-benchmark"."timeseries_boolean"
+
+mappingId	type
+target		ex:{subject} <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> rds:{object} .
+source		SELECT * from "s3"."otit-benchmark"."type"
+
+mappingId	label
+target		ex:{subject} <http://www.w3.org/2000/01/rdf-schema#label> {object}^^xsd:string .
+source		SELECT * from "s3"."otit-benchmark"."label"
+
+mappingId	hasdatatype
+target		ex:{subject} <https://github.com/magbak/chrontext#hasDatatype> xsd:{object} .
+source		SELECT * from "s3"."otit-benchmark"."hasdatatype"
+
+mappingId	hasexternalid
+target		ex:{subject} <https://github.com/magbak/chrontext#hasExternalId> {object}^^xsd:string .
+source		SELECT * from "s3"."otit-benchmark"."hasexternalid"
+
+mappingId	hasstaticproperty
+target		ex:{subject} <https://github.com/magbak/chrontext#hasStaticProperty> ex:{object} .
+source		SELECT * from "s3"."otit-benchmark"."hasstaticproperty"
+
+mappingId	hasstaticvalue
+target		ex:{subject} <https://github.com/magbak/chrontext#hasStaticValue> {object}^^xsd:long .
+source		SELECT * from "s3"."otit-benchmark"."hasstaticvalue"
+
+mappingId	hastimeseries
+target		ex:{subject} <https://github.com/magbak/chrontext#hasTimeseries> ex:{object} .
+source		SELECT * from "s3"."otit-benchmark"."hastimeseries"
+
+mappingId	rdspowerhasfunctionalaspect
+target		ex:{subject} <https://github.com/magbak/chrontext/rds_power#hasFunctionalAspect> ex:{object} .
+source		SELECT * from "s3"."otit-benchmark"."rdspowerhasfunctionalaspect"
+
+mappingId	rdspowerhasfunctionalaspectnode
+target		ex:{subject} <https://github.com/magbak/chrontext/rds_power#hasFunctionalAspectNode> ex:{object} .
+source		SELECT * from "s3"."otit-benchmark"."rdspowerhasfunctionalaspectnode"
+
+]]

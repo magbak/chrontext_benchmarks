@@ -1,0 +1,17 @@
+Solution,Query,RowsBool,RowsReal,Memory,Time
+Chrontext,Production Grouped 1,0,25920,87.01,0.5
+Chrontext,Production Grouped 2,0,259200,147.49,1.40
+Chrontext,Production Grouped 3,0,2566080,788.29,2.88
+Chrontext,Production Grouped 4,0,10238400,1040,7.39
+Ontop,Production Grouped 1,51840000,154897920,58220,53.13
+Ontop,Production Grouped 2,51865920,155157120,57520,54.69
+Ontop,Production Grouped 3,51840000,157489920,57510,62
+Ontop,Production Grouped 4,51995520,165240000,59410,57.60
+Chrontext,Production 1,0,25920,25.36,0.5
+Chrontext,Production 2,0,259200,91.73,0.5
+Chrontext,Production 3,0,2566080,430.59,1.72
+Chrontext,Production 4,0,10238400,607.66,5.66
+Ontop,Production 1,20736000,61974720,23020,25.94
+Ontop,Production 2,20761920,62233920,23010,26.72
+Ontop,Production 3,20736000,64566720,23730,70
+Ontop,Production 4,20891520,72316800,25190,240

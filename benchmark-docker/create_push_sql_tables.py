@@ -5,7 +5,7 @@ import pathlib
 
 PATH_HERE = pathlib.Path(__file__).parent
 
-engine = sa.create_engine('postgresql://postgresuser:secretPassword1234@postgres-0.postgres.otit.svc.cluster.local:5432/otit')
+engine = sa.create_engine('postgresql://postgresuser:secretPassword1234@postgres-0.postgres.chrontext.svc.cluster.local:5432/chrontext')
 
 for f in os.listdir(PATH_HERE / "tables"):
     table_name = f.replace(".parquet", "")

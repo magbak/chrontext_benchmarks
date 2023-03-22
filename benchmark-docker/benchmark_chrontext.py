@@ -28,9 +28,9 @@ tables = [
         month_column="dir1",
         day_column="dir2")
 ]
-arrow_flight_sql_database = ArrowFlightSQLDatabase(host="dremio-client.chrontext.svc.cluster.local", port=32010,
+arrow_flight_sql_database = ArrowFlightSQLDatabase(host="dremio-client.default.svc.cluster.local", port=32010,
                                                    username="mba",
-                                                   password="XzawajQ4a7hJQGx", tables=tables)
+                                                   password="Qi3CQzuqK5DTJcS", tables=tables)
 engine.set_arrow_flight_sql(arrow_flight_sql_database)
 n = 12
 times = []
@@ -49,7 +49,7 @@ for f in os.listdir("queries_chrontext"):
             print("Took " + str(took))
             print(df)
             if firstiter:
-                df.to_csv(f"output/chrontext_out_{f}_{i}.csv")
+                df.write_csv(f"output/chrontext_out_{f}_{i}.csv")
                 firstiter = False
             if took > 600:
                 print("Took more than 600 seconds, aborting case")

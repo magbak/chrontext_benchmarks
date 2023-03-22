@@ -7,7 +7,7 @@ n = 12
 
 times = []
 
-endpoint = "http://ontop.otit.svc.cluster.local:8080/sparql"
+endpoint = "http://ontop.chrontext.svc.cluster.local:8080/sparql"
 
 for f in os.listdir("queries_ontop"):
     print("Query: " + f.replace(".sparql", ""))

@@ -4,7 +4,7 @@ metadata:
   labels:
     app: postgres
   name: postgres
-  namespace: otit
+  namespace: chrontext
 spec:
   clusterIP: None
   selector:
@@ -14,7 +14,7 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: postgres
-  namespace: otit
+  namespace: chrontext
 spec:
   replicas: 1
   selector:
@@ -33,7 +33,7 @@ spec:
         - name: POSTGRES_PASSWORD
           value: secretPassword1234
         - name: POSTGRES_DB
-          value: otit
+          value: chrontext
         - name: PGDATA
           value: /var/lib/postgresql/data/pgdata
         image: postgres:14.5

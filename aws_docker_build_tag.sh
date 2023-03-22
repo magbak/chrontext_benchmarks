@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-PREFIX="ID_HERE.dkr.ecr.eu-west-2.amazonaws.com"
+PREFIX="iiiiiiiiiii.dkr.ecr.eu-west-2.amazonaws.com"
 echo $PREFIX
 
 cd dremio-docker && docker build --file Dockerfile --tag ${PREFIX}/dremio:latest . && cd ..
