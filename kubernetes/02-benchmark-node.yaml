@@ -2,48 +2,34 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    app: ontop
-  name: ontop
-  namespace: otit
+    app: benchmark
+  name: benchmark
+  namespace: chrontext
 spec:
   clusterIP: None
   selector:
-    app: ontop
+    app: benchmark
 ---
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: ontop
-  namespace: otit
+  name: benchmark
+  namespace: chrontext
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: ontop
-  serviceName: ontop
+      app: benchmark
+  serviceName: benchmark
   template:
     metadata:
       labels:
-        app: ontop
+        app: benchmark
     spec:
       containers:
-        - env:
-          - name: ONTOP_MAPPING_FILE
-            value: /opt/ontop/input/mapping.obda
-          - name: ONTOP_DB_USER
-            value: mba
-          - name: ONTOP_DB_PASSWORD
-            value: XzawajQ4a7hJQGx
-          - name: ONTOP_DB_DRIVER
-            value: com.dremio.jdbc.Driver
-          - name: ONTOP_DB_URL
-            value: jdbc:dremio:direct=dremio-client.otit.svc.cluster.local:31010
-          image: ID_HERE.dkr.ecr.eu-west-2.amazonaws.com/ontop:latest
+        - image: ID_HERE.dkr.ecr.eu-west-2.amazonaws.com/benchmark:latest
           imagePullPolicy: Always
-          name: ontop
-          ports:
-          - containerPort: 8080
-          - containerPort: 8082
+          name: benchmark
       affinity:
         podAntiAffinity: #https://medium.com/@johnjjung/building-a-kubernetes-daemonstatefulset-30ad0592d8cb
           requiredDuringSchedulingIgnoredDuringExecution:

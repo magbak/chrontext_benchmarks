@@ -3,7 +3,7 @@ from time import time
 
 from chrontext import Engine, ArrowFlightSQLDatabase, TimeSeriesTable
 
-ENDPOINT = "http://ontop.otit.svc.cluster.local:8080/sparql"
+ENDPOINT = "http://ontop.chrontext.svc.cluster.local:8080/sparql"
 
 engine = Engine(ENDPOINT)
 tables = [
@@ -28,7 +28,7 @@ tables = [
         month_column="dir1",
         day_column="dir2")
 ]
-arrow_flight_sql_database = ArrowFlightSQLDatabase(host="dremio-client.otit.svc.cluster.local", port=32010,
+arrow_flight_sql_database = ArrowFlightSQLDatabase(host="dremio-client.chrontext.svc.cluster.local", port=32010,
                                                    username="mba",
                                                    password="XzawajQ4a7hJQGx", tables=tables)
 engine.set_arrow_flight_sql(arrow_flight_sql_database)
@@ -49,7 +49,7 @@ for f in os.listdir("queries_chrontext"):
             print("Took " + str(took))
             print(df)
             if firstiter:
-                df.to_csv(f"output/otit_out_{f}_{i}.csv")
+                df.to_csv(f"output/chrontext_out_{f}_{i}.csv")
                 firstiter = False
             if took > 600:
                 print("Took more than 600 seconds, aborting case")
